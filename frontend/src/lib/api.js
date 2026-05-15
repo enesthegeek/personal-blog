@@ -1,4 +1,4 @@
-export const API = 'personal-blog-production-f55e.up.railway.app';
+export const API = 'https://personal-blog-production-f55e.up.railway.app';
 
 function authHeader() {
   const token = localStorage.getItem('blog-admin-token');
