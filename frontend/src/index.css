@@ -1,0 +1,252 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #080808;
+  --bg-2: #0f0f0f;
+  --bg-card: #111111;
+  --border: #1e1e1e;
+  --border-hover: #2e2e2e;
+  --text: #d4d4d4;
+  --text-muted: #5a5a5a;
+  --text-dim: #888888;
+  --text-bright: #f5f5f5;
+
+  /* Programming accent — purple (matches portfolio) */
+  --accent: #a78bfa;
+  --accent-2: #c4b5fd;
+  --accent-dim: #a78bfa0f;
+  --accent-glow: #a78bfa1f;
+  --accent-border: #a78bfa4d;
+  --accent-border-hover: #a78bfa8c;
+
+  /* Nuclear accent — reactor green */
+  --nuclear: #34d399;
+  --nuclear-2: #6ee7b7;
+  --nuclear-dim: #34d3990f;
+  --nuclear-glow: #34d3991f;
+  --nuclear-border: #34d3994d;
+  --nuclear-border-hover: #34d3998c;
+
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+  --radius: 8px;
+  --max-w: 780px;
+}
+
+[data-theme="light"] {
+  --bg: #f8f8f8;
+  --bg-2: #f0f0f0;
+  --bg-card: #ffffff;
+  --border: #e5e5e5;
+  --border-hover: #cccccc;
+  --text: #444444;
+  --text-muted: #aaaaaa;
+  --text-dim: #777777;
+  --text-bright: #111111;
+
+  --accent: #7c3aed;
+  --accent-2: #9333ea;
+  --accent-dim: #7c3aed0f;
+  --accent-glow: #7c3aed24;
+  --accent-border: #7c3aed47;
+  --accent-border-hover: #7c3aed80;
+
+  --nuclear: #059669;
+  --nuclear-2: #10b981;
+  --nuclear-dim: #0596690f;
+  --nuclear-glow: #05966924;
+  --nuclear-border: #05966947;
+  --nuclear-border-hover: #05966980;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: inherit;
+}
+
+::selection {
+  background: var(--accent-glow);
+  color: var(--accent);
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border-hover); border-radius: 3px; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+
+.anim-fade-up {
+  animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.wrap {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.divider {
+  background: linear-gradient(90deg, transparent, var(--border) 20%, var(--border) 80%, transparent);
+  width: 100%;
+  height: 1px;
+}
+
+/* ── Label pill ── */
+.label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 20px;
+  padding: 3px 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.label--accent {
+  color: var(--accent);
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-border);
+}
+
+.label--nuclear {
+  color: var(--nuclear);
+  background: var(--nuclear-dim);
+  border: 1px solid var(--nuclear-border);
+}
+
+/* ── TipTap editor ── */
+.ProseMirror {
+  min-height: 380px;
+  outline: none;
+  color: var(--text);
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+.ProseMirror > * + * { margin-top: 0.85em; }
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  color: var(--text-muted);
+  pointer-events: none;
+  float: left;
+  height: 0;
+}
+
+.ProseMirror h2 {
+  font-size: 1.35em;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text-bright);
+  margin-top: 1.6em;
+}
+
+.ProseMirror h3 {
+  font-size: 1.15em;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text-bright);
+  margin-top: 1.4em;
+}
+
+.ProseMirror code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 6px;
+  color: var(--accent);
+}
+
+.ProseMirror pre {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1em 1.25em;
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  overflow-x: auto;
+}
+
+.ProseMirror pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--text);
+}
+
+.ProseMirror ul, .ProseMirror ol {
+  padding-left: 1.5em;
+}
+
+.ProseMirror hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2em 0;
+}
+
+.ProseMirror img {
+  max-width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  display: block;
+}
+
+.ProseMirror img.ProseMirror-selectednode {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.ProseMirror blockquote {
+  border-left: 3px solid var(--accent-border);
+  padding-left: 1em;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+/* ── Post body (rendered HTML) ── */
+.post-body > * + * { margin-top: 1em; }
+.post-body h2 { font-size: 1.35em; font-weight: 600; letter-spacing: -0.02em; color: var(--text-bright); margin-top: 1.8em; }
+.post-body h3 { font-size: 1.15em; font-weight: 600; letter-spacing: -0.01em; color: var(--text-bright); margin-top: 1.5em; }
+.post-body code { font-family: var(--font-mono); font-size: 0.85em; background: var(--bg-2); border: 1px solid var(--border); border-radius: 4px; padding: 2px 6px; color: var(--accent); }
+.post-body pre { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1em 1.25em; font-family: var(--font-mono); font-size: 0.85em; overflow-x: auto; margin: 1.25em 0; }
+.post-body pre code { background: none; border: none; padding: 0; color: var(--text); }
+.post-body ul, .post-body ol { padding-left: 1.5em; }
+.post-body hr { border: none; border-top: 1px solid var(--border); margin: 2em 0; }
+.post-body img { max-width: 100%; border-radius: var(--radius); border: 1px solid var(--border); display: block; margin: 1.5em 0; }
+.post-body blockquote { border-left: 3px solid var(--accent-border); padding-left: 1em; color: var(--text-dim); font-style: italic; }

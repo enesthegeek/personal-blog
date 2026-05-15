@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Environment variables — never commit these
+.env
+.env.*
+!.env.example
+
+# Database — lives on the server, not in git
+blog.db
+blog.db-shm
+blog.db-wal
+
+# User-uploaded images — too large for git, serve from the host
+uploads/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
