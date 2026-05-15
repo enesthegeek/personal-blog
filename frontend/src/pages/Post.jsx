@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
+import { API } from '../lib/api';
 import TagBadge from '../components/TagBadge';
 import { deletePost } from '../lib/api';
 import { useAuth } from '../context/AuthContext';
@@ -42,7 +43,7 @@ export default function Post() {
   const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/posts/${id}`)
+    fetch(`${API}/api/posts/${id}`)
       .then(r => { if (!r.ok) throw new Error(); return r.json(); })
       .then(data => { setPost(data); setLoading(false); })
       .catch(() => { setError('Post not found.'); setLoading(false); });

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import PostCard from '../components/PostCard';
+import { API } from '../lib/api';
 
 const META = {
   nuclear: {
@@ -27,7 +28,7 @@ export default function CategoryPage({ category }) {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:5000/api/posts?category=${category}`)
+    fetch(`${API}/api/posts?category=${category}`)
       .then(r => r.json())
       .then(data => { setPosts(data); setLoading(false); })
       .catch(() => setLoading(false));

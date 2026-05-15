@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PostCard from '../components/PostCard';
+import { API } from '../lib/api';
 
 const AtomSVG = () => (
   <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -125,7 +126,7 @@ export default function Home() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/posts')
+    fetch(`${API}/api/posts`)
       .then(r => r.json())
       .then(setPosts)
       .catch(() => {});
