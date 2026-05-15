@@ -6,6 +6,9 @@ import uploadRouter from './routes/upload.js';
 import authRouter from './routes/auth.js';
 import { uploadsDir } from './config.js';
 
+process.on('uncaughtException', (err) => { process.stdout.write(`CRASH uncaughtException: ${err.stack}\n`); process.exit(1); });
+process.on('unhandledRejection', (reason) => { process.stdout.write(`CRASH unhandledRejection: ${reason}\n`); process.exit(1); });
+
 dotenv.config();
 
 const app = express();
