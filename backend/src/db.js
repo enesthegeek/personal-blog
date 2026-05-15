@@ -3,7 +3,10 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const db = new Database(path.join(__dirname, '../blog.db'));
+const dbPath = process.env.DATA_DIR
+  ? path.join(process.env.DATA_DIR, 'blog.db')
+  : path.join(__dirname, '../blog.db');
+const db = new Database(dbPath);
 
 db.exec(`
   CREATE TABLE IF NOT EXISTS posts (
